@@ -3,8 +3,10 @@ import { SubmissionService } from './submission.service';
 
 @Controller('submission')
 export class SubmissionController {
+  constructor(private readonly submissionService: SubmissionService) {}
+
   @Get('find-all')
   findAll(): any[] {
-    return [];
+    return this.submissionService.findAll();
   }
 }
