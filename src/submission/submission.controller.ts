@@ -9,4 +9,10 @@ export class SubmissionController {
   findAll(): any[] {
     return this.submissionService.findAll();
   }
+  
+ 
+  @Delete(':id') /* needs editting */
+  remove(@Param('id') id: number) : void {
+    return this.submissionService.remove(id);
+  } 
 }
