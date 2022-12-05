@@ -1,4 +1,4 @@
-import { Controller, Get,Patch } from '@nestjs/common';
+import { Controller, Get, Patch } from '@nestjs/common';
 import { SubmissionService } from './submission.service';
 
 @Controller('submission')
@@ -10,15 +10,12 @@ export class SubmissionController {
     return this.submissionService.findAll();
   }
   @Patch('update')
-  updateSubmission(subID:string){
+  updateSubmission(subID: string) {
     this.submissionService.updateSubmission(subID);
     return null;
   }
 
-  
- 
-  @Delete(':id') /* needs editting */
-  remove(@Param('id') id: number) : void {
+  @Delete(':id') /* needs editting */ remove(@Param('id') id: number): void {
     return this.submissionService.remove(id);
-  } 
+  }
 }
