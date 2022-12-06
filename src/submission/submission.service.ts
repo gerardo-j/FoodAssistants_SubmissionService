@@ -17,4 +17,9 @@ export class SubmissionService {
     this.submission.splice(pos, 1);
     return true;
   }
+
+  createSubmission(submission: any): void {
+    // submission = link to database
+  }
+
 }
