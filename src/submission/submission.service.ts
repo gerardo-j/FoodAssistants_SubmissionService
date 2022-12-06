@@ -12,10 +12,7 @@ export class SubmissionService {
   }
   remove(id: number): void {
     /* needs editting */
-    const submission = this.findAll(id);
-    const post = this.submission.indexOf(submission);
-    this.submission.splice(pos, 1);
-    return true;
+    throw new Error('Method not implemented');
   }
 
   createSubmission(submission: any): void {
