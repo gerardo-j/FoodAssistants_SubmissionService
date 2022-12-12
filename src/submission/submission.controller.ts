@@ -6,7 +6,7 @@ export class SubmissionController {
   constructor(private readonly submissionService: SubmissionService) {}
 
   @Get('find-all')
-  findAll(): any[] {
+  findAll(){
     return this.submissionService.findAll();
   }
   @Patch('update')

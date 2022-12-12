@@ -1,9 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 
+
 @Injectable()
 export class SubmissionService {
-  findAll(): any[] {
-    return [{}];
+  
+  findAll(){
+    
   }
   updateSubmission(subID: string) {
     if (!subID) {
