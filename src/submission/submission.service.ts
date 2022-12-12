@@ -6,8 +6,8 @@ import { Repository } from 'typeorm';
 export class SubmissionService {  
   constructor(private readonly repository: Repository<any>) {}
 
-  findAll(): any[] {
-    return [{}];
+  findAll(){
+    return this.repository;
   }
   updateSubmission(subID: string) {
     if (!subID) {

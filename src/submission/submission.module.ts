@@ -6,6 +6,4 @@ import { SubmissionService } from './submission.service';
   controllers: [SubmissionController],
   providers: [SubmissionService, Repository],
 })
-export class SubmissionModule {
-  
-}
+export class SubmissionModule {}
