@@ -1,9 +1,13 @@
+import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SubmissionModule } from './submission/submission.module';
+ConfigModule.forRoot();
+
+console.log(process.env.POSTGRES_HOST);
 
 const options: PostgresConnectionOptions = {
   type: 'postgres',
