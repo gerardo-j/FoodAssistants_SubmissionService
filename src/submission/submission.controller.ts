@@ -1,4 +1,12 @@
-import { Controller, Delete, Get, Param, Patch, Post, Body} from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Body,
+} from '@nestjs/common';
 import { SubmissionService } from './submission.service';
 
 @Controller('submission')
@@ -20,9 +28,8 @@ export class SubmissionController {
     return this.submissionService.remove(id);
   }
 
-  @Post("create")
-  createSubmission(@Body() body: any) :any {
+  @Post('create')
+  createSubmission(@Body() body: any): any {
     this.submissionService.createSubmission(body);
   }
-
 }

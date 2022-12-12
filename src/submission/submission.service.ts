@@ -1,7 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class SubmissionService {
+  constructor(private readonly repository: Repository<any>) {}
+
   findAll(): any[] {
     return [{}];
   }
@@ -18,5 +21,4 @@ export class SubmissionService {
   createSubmission(submission: any): void {
     // submission = link to database
   }
-
 }
