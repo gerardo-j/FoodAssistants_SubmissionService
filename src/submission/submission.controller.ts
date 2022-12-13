@@ -1,4 +1,6 @@
-import { Controller, Delete, Get, Param, Patch, Post, Body} from '@nestjs/common';
+import { Controller, Delete, Get, Patch, Post, Body } from '@nestjs/common';
+import { CreateSubmissionDto } from './dto/create-submission.dto';
+import { SubmissionEntity } from './entity/submission.entity';
 import { SubmissionService } from './submission.service';
 
 @Controller('submission')
@@ -20,8 +22,10 @@ export class SubmissionController {
     return await this.submissionService.remove(id);
   }
 
-  @Post("create")
-  createSubmission(@Body() body: any) :any {
-    this.submissionService.createSubmission(body);
+  @Post('create')
+  async createSubmission(
+    @Body() body: CreateSubmissionDto,
+  ): Promise<SubmissionEntity> {
+    return await this.submissionService.create(body);
   }
 }

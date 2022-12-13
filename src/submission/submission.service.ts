@@ -35,8 +35,7 @@ export class SubmissionService {
     return this.submissionRepository.remove(submission);
   }
 
-  createSubmission(submission: SubmissionEntity): void {
-    // submission = link to database
-    console.log(submission.id);
+  async create(submission: SubmissionEntity): Promise<SubmissionEntity> {
+    return await this.submissionRepository.save(submission);
   }
 }

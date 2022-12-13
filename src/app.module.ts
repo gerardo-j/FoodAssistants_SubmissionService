@@ -5,6 +5,7 @@ import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConne
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SubmissionModule } from './submission/submission.module';
+import { SubmissionEntity } from './submission/entity/submission.entity';
 ConfigModule.forRoot();
 
 console.log(process.env.POSTGRES_HOST);
@@ -17,7 +18,8 @@ const options: PostgresConnectionOptions = {
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
   synchronize: process.env.POSTGRES_SYNC === 'true', // Enable only for development
-  entities: ['dist/**/*.entity{.ts,.js}'],
+  // entities: ['dist/**/*.entity{.ts,.js}'],
+  entities: [SubmissionEntity],
 };
 @Module({
   imports: [SubmissionModule, TypeOrmModule.forRoot(options)],
