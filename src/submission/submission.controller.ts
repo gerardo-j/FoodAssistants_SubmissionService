@@ -6,6 +6,7 @@ import {
   Post,
   Body,
   Param,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { CreateSubmissionDto } from './dto/create-submission.dto';
 import { SubmissionEntity } from './entity/submission.entity';
@@ -15,6 +16,13 @@ import { SubmissionService } from './submission.service';
 export class SubmissionController {
   constructor(private readonly submissionService: SubmissionService) {}
 
+  @Get('find/:id')
+  async findOne(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<SubmissionEntity> {
+    return await this.submissionService.findOneById(id);
+  }
+
   @Get('find-all')
   async findAll(): Promise<SubmissionEntity[]> {
     return await this.submissionService.findAll();
@@ -22,7 +30,7 @@ export class SubmissionController {
 
   @Patch('update/:id')
   async updateSubmission(
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
     @Body() body: any,
   ): Promise<SubmissionEntity> {
     console.log('body', body);
