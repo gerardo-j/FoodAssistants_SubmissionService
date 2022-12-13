@@ -6,3 +6,16 @@ services:
       dockerfile: 'Dockerfile'
     ports:
       - '3000:3000'
+  postgres:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=app
+      - POSTGRES_PASSWORD=app
+      - POSTGRES_DB=submission
+    volumes:
+      - submission_db:/var/lib/postgresql/data
+
+volumes:
+  submission_db:
