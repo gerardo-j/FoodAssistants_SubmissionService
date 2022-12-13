@@ -1,4 +1,6 @@
 import { Controller, Delete, Get, Param, Patch, Post, Body} from '@nestjs/common';
+import { CreateSubmissionDto } from './dto/create-submission.dto';
+import { submission } from './entities/submission.entity';
 import { SubmissionService } from './submission.service';
 
 @Controller('submission')
@@ -6,7 +8,7 @@ export class SubmissionController {
   constructor(private readonly submissionService: SubmissionService) {}
 
   @Get('find-all')
-  findAll(): any[] {
+  findAll(): submission[] {
     return this.submissionService.findAll();
   }
   @Patch('update')
@@ -21,7 +23,7 @@ export class SubmissionController {
   }
 
   @Post("create")
-  createSubmission(@Body() body: any) :any {
+  createSubmission(@Body() body: CreateSubmissionDto) : any {
     this.submissionService.createSubmission(body);
   }
 
