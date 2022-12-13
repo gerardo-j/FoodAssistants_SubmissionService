@@ -39,7 +39,7 @@ export class SubmissionController {
     return await this.submissionService.updateSubmission(id, body);
   }
 
-  @Delete('remove') // needs editing
+  @Delete('remove/:id') // needs editing
   async remove(@Param('id') id: number): Promise<SubmissionEntity> {
     return await this.submissionService.remove(id);
   }

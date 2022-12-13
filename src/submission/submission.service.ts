@@ -43,6 +43,6 @@ export class SubmissionService {
   }
 
   async create(submission: SubmissionEntity): Promise<SubmissionEntity> {
-    return await this.submissionRepository.create(submission);
+    return await this.submissionRepository.save(submission);
   }
 }
