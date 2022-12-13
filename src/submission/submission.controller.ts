@@ -1,4 +1,12 @@
-import { Controller, Delete, Get, Patch, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Patch,
+  Post,
+  Body,
+  Param,
+} from '@nestjs/common';
 import { CreateSubmissionDto } from './dto/create-submission.dto';
 import { SubmissionEntity } from './entity/submission.entity';
 import { SubmissionService } from './submission.service';
@@ -8,17 +16,23 @@ export class SubmissionController {
   constructor(private readonly submissionService: SubmissionService) {}
 
   @Get('find-all')
-  findAll(): any[] {
-    return this.submissionService.findAll();
+  async findAll(): Promise<SubmissionEntity[]> {
+    return await this.submissionService.findAll();
   }
-  @Patch('update')
-  updateSubmission(subID: string) {
-    this.submissionService.updateSubmission(subID);
-    return null;
+
+  @Patch('update/:id')
+  async updateSubmission(
+    @Param('id') id: number,
+    @Body() body: any,
+  ): Promise<SubmissionEntity> {
+    console.log('body', body);
+    console.log('id', id);
+
+    return await this.submissionService.updateSubmission(id, body);
   }
 
   @Delete('remove') // needs editing
-  async remove(@Body('id') id: number): Promise<SubmissionEntity> {
+  async remove(@Param('id') id: number): Promise<SubmissionEntity> {
     return await this.submissionService.remove(id);
   }
 

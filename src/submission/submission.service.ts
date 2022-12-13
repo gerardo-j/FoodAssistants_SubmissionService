@@ -24,10 +24,17 @@ export class SubmissionService {
     return await this.submissionRepository.find();
   }
 
-  updateSubmission(subID: string) {
-    if (!subID) {
-      throw new NotFoundException('could not find sub');
+  async updateSubmission(
+    id: number,
+    partialSubmission: SubmissionEntity,
+  ): Promise<SubmissionEntity> {
+    const submission = await this.findOneById(id);
+
+    if (!submission) {
+      throw new NotFoundException('could not find submission');
     }
+    await this.submissionRepository.update(id, partialSubmission);
+    return await this.findOneById(id);
   }
 
   async remove(id: number): Promise<SubmissionEntity> {
@@ -36,6 +43,6 @@ export class SubmissionService {
   }
 
   async create(submission: SubmissionEntity): Promise<SubmissionEntity> {
-    return await this.submissionRepository.save(submission);
+    return await this.submissionRepository.create(submission);
   }
 }

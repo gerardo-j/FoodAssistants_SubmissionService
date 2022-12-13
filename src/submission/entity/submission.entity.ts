@@ -1,29 +1,42 @@
-import { Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('submission')
 export class SubmissionEntity {
-  @PrimaryGeneratedColumn({ name: 'id' })
+  @PrimaryGeneratedColumn()
   id: number;
-    name: string;
-    phone: string;
-    address: string;
-    distribution: string;
-    residents: number;
-    items: {
-        grocery: string[];
-        generalHygiene: string[];
-        feminineHygiene: string[];
-        cleaningAndHealth: string[];
-    }
 
-    constructor(name: string, phone: string, address: string, distribution: string, residents: number, items: 
-        {grocery: string[]; generalHygiene: string[]; feminineHygiene: string[]; cleaningAndHealth: string[];}) {
-        this.name = name;
-        this.phone = phone;
-        this.address = address;
-        this.distribution = distribution;
-        this.residents = residents;
-        this.items = items;
-       }
+  @Column()
+  name: string;
+
+  @Column()
+  phone: string;
+
+  @Column()
+  address: string;
+
+  @Column()
+  distribution: 'pickup' | 'delivery';
+
+  @Column()
+  residents: number;
+
+  @Column('json')
+  items: {
+    grocery: string[];
+    generalHygiene: string[];
+    feminineHygiene: string[];
+    cleaningAndHealth: string[];
+  };
+
+  @CreateDateColumn({ name: 'created_at' })
+  createAt: Date;
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt: Date;
 }
-
