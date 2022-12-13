@@ -19,5 +19,5 @@ export class submission {
         this.distribution = distribution;
         this.residents = residents;
         this.items = items;
-    }
+       }
 }
