@@ -9,8 +9,8 @@ import {
   IsPhoneNumber,
   IsPositive,
   IsString,
+  ValidateNested,
 } from 'class-validator';
-import { SubmissionEntity } from '../entity/submission.entity';
 
 class Items {
   @IsArray()
@@ -61,5 +61,6 @@ export class UpdateSubmissionDto {
   @IsObject()
   @Type()
   @IsOptional()
+  @ValidateNested()
   items: Items;
 }
