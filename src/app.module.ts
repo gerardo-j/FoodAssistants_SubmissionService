@@ -3,7 +3,6 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { SubmissionModule } from './submission/submission.module';
 import { SubmissionEntity } from './submission/entity/submission.entity';
 ConfigModule.forRoot();
@@ -22,6 +21,5 @@ const options: PostgresConnectionOptions = {
 @Module({
   imports: [SubmissionModule, TypeOrmModule.forRoot(options)],
   controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
