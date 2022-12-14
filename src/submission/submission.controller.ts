@@ -8,11 +8,13 @@ import {
   Param,
   ParseIntPipe,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CreateSubmissionDto } from './dto/create-submission.dto';
 import { UpdateSubmissionDto } from './dto/update-submission.dto';
 import { SubmissionEntity } from './entity/submission.entity';
 import { SubmissionService } from './submission.service';
 
+@ApiTags('Submission')
 @Controller('submission')
 export class SubmissionController {
   constructor(private readonly submissionService: SubmissionService) {}
