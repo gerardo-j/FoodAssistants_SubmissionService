@@ -11,7 +11,8 @@ export class SubmissionService {
     @InjectRepository(SubmissionEntity)
     private readonly submissionRepository: Repository<SubmissionEntity>,
   ) {}
-
+    // returns the promise and gets each of the ID numbers
+    // if it fails to return the values, throws NotFoundException and prints 'Could not find submission.'
   async findOneById(id: number): Promise<SubmissionEntity> {
     try {
       return await this.submissionRepository.findOneByOrFail({
@@ -21,11 +22,12 @@ export class SubmissionService {
       throw new NotFoundException('Could not find submission.');
     }
   }
-
+  // returns the promise and gets the all submitted values
   async findAll(): Promise<SubmissionEntity[]> {
     return await this.submissionRepository.find();
   }
-
+  // try and catch for updateSubmission. awaits for the submission to update.
+  // if an errors occurs, it'll print 'Could not update submission.'
   async updateSubmission(
     id: number,
     partialSubmission: UpdateSubmissionDto,
@@ -39,12 +41,12 @@ export class SubmissionService {
     }
     return await this.findOneById(id);
   }
-
+  // removes a promise
   async remove(id: number): Promise<SubmissionEntity> {
     const submission = await this.findOneById(id);
     return this.submissionRepository.remove(submission);
   }
-
+ // creates a promise
   async create(submission: CreateSubmissionDto): Promise<SubmissionEntity> {
     return await this.submissionRepository.save(submission);
   }
