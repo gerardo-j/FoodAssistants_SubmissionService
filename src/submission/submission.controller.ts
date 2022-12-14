@@ -9,6 +9,7 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { CreateSubmissionDto } from './dto/create-submission.dto';
+import { UpdateSubmissionDto } from './dto/update-submission.dto';
 import { SubmissionEntity } from './entity/submission.entity';
 import { SubmissionService } from './submission.service';
 
@@ -31,11 +32,8 @@ export class SubmissionController {
   @Patch('update/:id')
   async updateSubmission(
     @Param('id', ParseIntPipe) id: number,
-    @Body() body: any,
+    @Body() body: UpdateSubmissionDto,
   ): Promise<SubmissionEntity> {
-    console.log('body', body);
-    console.log('id', id);
-
     return await this.submissionService.updateSubmission(id, body);
   }
 

@@ -1,6 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CreateSubmissionDto } from './dto/create-submission.dto';
+import { UpdateSubmissionDto } from './dto/update-submission.dto';
 import { SubmissionEntity } from './entity/submission.entity';
 
 @Injectable()
@@ -16,7 +18,7 @@ export class SubmissionService {
         id,
       });
     } catch (error) {
-      throw new NotFoundException('could not find submission');
+      throw new NotFoundException('Could not find submission.');
     }
   }
 
@@ -26,14 +28,17 @@ export class SubmissionService {
 
   async updateSubmission(
     id: number,
-    partialSubmission: SubmissionEntity,
+    partialSubmission: UpdateSubmissionDto,
   ): Promise<SubmissionEntity> {
-    const submission = await this.findOneById(id);
+    try {
+      console.log(partialSubmission);
 
-    if (!submission) {
-      throw new NotFoundException('could not find submission');
+      await this.submissionRepository.update(id, partialSubmission);
+    } catch (error) {
+      console.log(error);
+
+      throw new NotFoundException('Could not find submission. invalid object');
     }
-    await this.submissionRepository.update(id, partialSubmission);
     return await this.findOneById(id);
   }
 
@@ -42,7 +47,7 @@ export class SubmissionService {
     return this.submissionRepository.remove(submission);
   }
 
-  async create(submission: SubmissionEntity): Promise<SubmissionEntity> {
+  async create(submission: CreateSubmissionDto): Promise<SubmissionEntity> {
     return await this.submissionRepository.save(submission);
   }
 }

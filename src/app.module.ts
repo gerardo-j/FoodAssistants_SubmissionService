@@ -8,8 +8,6 @@ import { SubmissionModule } from './submission/submission.module';
 import { SubmissionEntity } from './submission/entity/submission.entity';
 ConfigModule.forRoot();
 
-console.log(process.env.POSTGRES_HOST);
-
 const options: PostgresConnectionOptions = {
   type: 'postgres',
   host: process.env.POSTGRES_HOST,

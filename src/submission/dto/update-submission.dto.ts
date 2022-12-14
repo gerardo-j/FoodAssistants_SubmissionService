@@ -1,54 +1,65 @@
+import { Type } from 'class-transformer';
 import {
   IsAlphanumeric,
   IsArray,
   IsIn,
-  IsNotEmpty,
   IsNumber,
   IsObject,
+  IsOptional,
   IsPhoneNumber,
   IsPositive,
   IsString,
 } from 'class-validator';
 import { SubmissionEntity } from '../entity/submission.entity';
 
-class Items extends SubmissionEntity {
+class Items {
   @IsArray()
+  @IsOptional()
   grocery: string[];
 
   @IsArray()
+  @IsOptional()
   generalHygiene: string[];
 
   @IsArray()
+  @IsOptional()
   feminineHygiene: string[];
 
   @IsArray()
+  @IsOptional()
   cleaningAndHealth: string[];
 }
 
-export class CreateSubmissionDto extends SubmissionEntity {
+export class UpdateSubmissionDto {
   @IsAlphanumeric()
-  @IsNotEmpty()
+  @IsOptional()
+  @Type()
   name: string;
 
   @IsPhoneNumber('US')
-  @IsNotEmpty()
+  @IsOptional()
+  @Type()
   phone: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
+  @Type()
   address: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
+  @Type()
   @IsIn(['pickup', 'delivery'])
   distribution: 'pickup' | 'delivery';
 
   @IsNumber()
-  @IsNotEmpty()
+  @IsOptional()
+  @Type()
   @IsPositive()
   residents: number;
 
   @IsObject()
-  @IsNotEmpty()
+  @Type()
+  @IsOptional()
   items: Items;
 }
