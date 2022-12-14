@@ -15,52 +15,52 @@ import {
 class Items {
   @IsArray()
   @IsOptional()
-  grocery: string[];
+  grocery?: string[];
 
   @IsArray()
   @IsOptional()
-  generalHygiene: string[];
+  generalHygiene?: string[];
 
   @IsArray()
   @IsOptional()
-  feminineHygiene: string[];
+  feminineHygiene?: string[];
 
   @IsArray()
   @IsOptional()
-  cleaningAndHealth: string[];
+  cleaningAndHealth?: string[];
 }
 
 export class UpdateSubmissionDto {
   @IsAlphanumeric()
   @IsOptional()
   @Type()
-  name: string;
+  name?: string;
 
   @IsPhoneNumber('US')
   @IsOptional()
   @Type()
-  phone: string;
+  phone?: string;
 
   @IsString()
   @IsOptional()
   @Type()
-  address: string;
+  address?: string;
 
   @IsString()
   @IsOptional()
   @Type()
   @IsIn(['pickup', 'delivery'])
-  distribution: 'pickup' | 'delivery';
+  distribution?: 'pickup' | 'delivery';
 
   @IsNumber()
   @IsOptional()
   @Type()
   @IsPositive()
-  residents: number;
+  residents?: number;
 
   @IsObject()
   @Type()
   @IsOptional()
   @ValidateNested()
-  items: Items;
+  items?: Items;
 }
