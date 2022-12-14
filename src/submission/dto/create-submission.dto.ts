@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import {
   IsAlphanumeric,
   IsArray,
@@ -8,10 +9,10 @@ import {
   IsPhoneNumber,
   IsPositive,
   IsString,
+  ValidateNested,
 } from 'class-validator';
-import { SubmissionEntity } from '../entity/submission.entity';
 
-class Items extends SubmissionEntity {
+class Items {
   @IsArray()
   grocery: string[];
 
@@ -25,7 +26,7 @@ class Items extends SubmissionEntity {
   cleaningAndHealth: string[];
 }
 
-export class CreateSubmissionDto extends SubmissionEntity {
+export class CreateSubmissionDto {
   @IsAlphanumeric()
   @IsNotEmpty()
   name: string;
@@ -50,5 +51,7 @@ export class CreateSubmissionDto extends SubmissionEntity {
 
   @IsObject()
   @IsNotEmpty()
+  @Type()
+  @ValidateNested()
   items: Items;
 }

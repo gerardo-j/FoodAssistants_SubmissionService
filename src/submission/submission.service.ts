@@ -32,12 +32,10 @@ export class SubmissionService {
   ): Promise<SubmissionEntity> {
     try {
       console.log(partialSubmission);
-
       await this.submissionRepository.update(id, partialSubmission);
     } catch (error) {
       console.log(error);
-
-      throw new NotFoundException('Could not find submission. invalid object');
+      throw new NotFoundException('Could not update submission.');
     }
     return await this.findOneById(id);
   }
