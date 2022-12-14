@@ -1,5 +1,5 @@
 import {
-  Entity,
+  Entity,  // importing entities and columns
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
@@ -9,7 +9,10 @@ import {
 @Entity('submission')
 export class SubmissionEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: number; // ID value consisting of digits
+ 
+  // Columns consisting of variables that contain a string.
+  // names, phone numbers, addresses, type of distribution, and type of items.
 
   @Column()
   name: string;
@@ -33,10 +36,10 @@ export class SubmissionEntity {
     feminineHygiene: string[];
     cleaningAndHealth: string[];
   };
-
+  // Column consisting of the created date
   @CreateDateColumn({ name: 'created_at' })
   createAt: Date;
-
+  // Column consisting of the updated date
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 }
