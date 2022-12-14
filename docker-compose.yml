@@ -6,6 +6,10 @@ services:
       dockerfile: 'Dockerfile'
     ports:
       - '3000:3000'
+    depends_on:
+      - postgres
+    env_file:
+      - .env
   postgres:
     image: postgres
     ports:
