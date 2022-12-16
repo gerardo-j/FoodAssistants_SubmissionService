@@ -46,7 +46,7 @@ export class SubmissionService {
     const submission = await this.findOneById(id);
     return this.submissionRepository.remove(submission);
   }
- // creates a promise
+ // creates a promises
   async create(submission: CreateSubmissionDto): Promise<SubmissionEntity> {
     return await this.submissionRepository.save(submission);
   }
